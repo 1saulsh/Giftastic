@@ -6,49 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Button Triggered AJAX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+	
 </head>
 
 <body>
    
-    <div id="shoeButton" class="container">
-    
-       <!-- Buttons-->
-       <button class="btn btn-info shoe" data-name="athletic-shoe" style="margin: 5px;">athletic-shoe</button>
-       <button class="btn btn-info shoe" data-name="penny-loafer" style="margin: 5px;">penny-loafer</button>
-       <button class="btn btn-info shoe" data-name="high-heel" style="margin: 5px;">high-heel</button>
-       <button class="btn btn-info shoe" data-name="boot" style="margin: 5px;">boot</button>
-       <button class="btn btn-info shoe" data-name="wedge" style="margin: 5px;">wedge</button>
-       <button class="btn btn-info shoe" data-name="sandal" style="margin: 5px;">sandal</button>
-       <button class="btn btn-info shoe" data-name="jellys-shoe" style="margin: 5px;">jelly-shoe</button>
-       <button class="btn btn-info shoe" data-name="designer-shoe" style="margin: 5px;">designer-shoe</button>
-       <button class="btn btn-info shoe" data-name="slipper" style="margin: 5px;">slipper</button>
-       <button class="btn btn-info shoe" data-name="oxfords" style="margin: 5px;">oxfords</button>
-    </div>   
-   
-    <!-- where gifs populate-->
-    <div id="gifs"></div>
+    <div class="container">
+        <h1> Shoe Search</h1>
 
-        <!-- Where shoe input typed in form-->
-        <form id="gif-form" role="form">
+         <!--div containing shoe buttons-->
+        <div class = "row" id= "shoeButtons">
+        </div>
+        
+        <div class ="row">
 
-            <!--label for Text Box-->
-            <label for="gif-input">Search Shoe Type</label>
-           
-            <!--Text Input Box-->
-            <input type= "text" id="gif-input" value=""><br>
-
-            <!--creates submit button-->
-            <input type="submit"  class="btn btn-success" id="theButton" value="Add To Gif List">
             
-        </form>
-    
-    <!--jquery cdn -->
-    <script
-    src="https://code.jquery.com/jquery-2.2.1.js"
-    integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc="
-    crossorigin="anonymous"></script>
+            <!--rendered Gifs will get displayed here-->
+            <div class= "col-lg-9" id ="display">
+            </div>
 
-    <script src ="javascript/gif.js" type="text/javascript"></script>
+            <div class="col-lg-3">
+                
+                <!-- Where shoe input typed in-->
+                <form id="shoeForm">
+                    <!--label for Text Box-->
+                    <label for="newShoeInput"> Add your favorite Shoe style</label>
+                    <!--Text Input Box-->
+                    <input type ="text" id-"newShoeInput">
+                    <br>
+                    
+                    <!--creates submit button which will add new shoe to page-->
+                    <input id="addShoe" type="submit" value="Submit">
+                </form>
+            
+        </div>
+    </div>       
+  
+    <!--jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src ="assets/javascript/gif.js" type="text/javascript"></script>
     
   </body>
   </html>
