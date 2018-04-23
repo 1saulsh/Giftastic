@@ -1,56 +1,61 @@
+
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Button Triggered AJAX</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
-	
+	<meta charset="utf-8">
+	<title>Button Triggered AJAX</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-
 <body>
-   
-    <div class="container">
-        <h1> Shoe Search</h1>
+	
 
-         <!--div containing shoe buttons-->
-        <div class = "row" id= "shoeButtons">
-        </div>
-        
-        <div class ="row">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Fashion Shoes</h1>
+	</div>
+	</div>		
+ <!-- Button -->
+<div id="gifButtonsView" class="container">
+</div>
 
-            
-            <!--rendered Gifs will get displayed here-->
-            <div class= "col-lg-9" id ="display">
-            </div>
+<!-- main Container -->
+<div class="container">
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+<!-- gifs -->
+<div id="gifsView">
+</div>	
+ </div>
 
-            <div class="col-lg-3">
-                
-                <!-- Where shoe input typed in-->
-                <form id="shoeForm">
-                    <!--label for Text Box-->
-                    <label for="newShoeInput"> Add your favorite Shoe style</label>
-                    <!--Text Input Box-->
-                    <input type ="text" id-"newShoeInput">
-                    <br>
-                    
-                    <!--creates submit button which will add new shoe to page-->
-                    <input id="addShoe" type="submit" value="Submit">
-                </form>
-            
-        </div>
-    </div>       
-  
-    <!--jquery cdn -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src ="assets/javascript/gif.js" type="text/javascript"></script>
-    
-  </body>
-  </html>
-   
+<!-- submit Form-->
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+ <form id="gifForm" role="form"> 
+ </div>
+ </div>
+
+ 
+ 	<div class="form-group">
+ 		<label for="topicInput"><h3>Add you Favorite famous Shoe!</h3> </label>
+ 		<input type="text" id="topicInput">
+ 	</div>
+ 	<input id="addGif" type="submit" value="Add Your shoe" class="btn btn-primary">
+
+ 	<input id="removeGif" type="submit" value="Remove last shoe" class="btn btn-primary">	
+ </form>
+
+ 
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>	
+
+
+
+<script type="text/javascript" src="assets/javascript/gif.js"></script>
+
 </body>
-
 </html>

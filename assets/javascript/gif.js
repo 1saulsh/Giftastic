@@ -1,156 +1,110 @@
-$(document).ready(function() {
 
-    //Ensures the correct gif is being searched for the corresponding button
-    $("button").on("click", function() {
-      var shoe = $(this).data("name");
-      //NOT SURE WHY MY API DOESN'T WORK. WHEN I CONSOLE LOG I GET A SYNTAX ERROR HOWEVER IF i COPY AND PASTE BELOW URL IT RENDERS IT RENDERS DATA AND ALLOWS ME TO RENDER A GIF FILE IN THE BROWESER  
-      var queryURL = "https://api.giphy.com/v1/gifs/search?&q=designer+shoes&api_key=BsVC2oqJgs4P02YFYAmIWMZIDukzNH93&limit=10";
-      $.ajax({
-          url: queryURL,
-          dataType: "jsonp",
-          method: "GET",
-      })
-          .then(function(response) {
-  
-  
-              console.log(response);
-          })
-        })
-    })
+$( document ).ready(function() {
 
-  
-//               var results = response.data;
-  
-//               for (var i = 0; i < results.length; i++) {
-  
-//                   var shoeDiv = $("<div/>");
-  
-//                   var p =$("<p/>");
-  
-//                   p.text(results[i].rating);
-  
-//                   var shoeImage = $("<img/>");
-  
-//                   shoeImage.addClass("anImg")
-  
-//                   shoeImage.attr("src", results[i].images.fixed_height.url);
-  
-//                   shoeImage.attr("data-still", results[i].images.fixed_height_still.url)
-  
-//                   shoeImage.attr("data-animate", results[i].images.fixed_height.url)
-  
-//                   .attr("data-state", "still");
-  
-//                   shoeDiv.append(p);
-  
-//                   shoeDiv.append(shoeImage);
-  
-//                   shoeDiv.prependTo($("#gifs"));
-//               }
-  
-//               $(".anImg").on("click", function() {
-          
-//                   var state = $(this).attr("data-state"); 
-//                   console.log(this);
-  
-//                   if (state == "still") {
-                  
-//                   $(this).attr("src", $(this).data("animate"));
-                  
-//                   $(this).attr("data-state", "animate");
-  
-//                   } else {
-                          
-//                   $(this).attr("src", $(this).data("still"));
-                  
-//                   $(this).attr("data-state", "still");
-//                   }      
-//               });
-//           });
-//   });
-  
-//   var shoe = [''];
-  
-  
-//       //This function "adds" the buttons 
-  
-//       // handles the event of displaying shoe gif when clicked
-//       $("#theButton").on("click", function(){
-//           var shoeButton = $("#gif-input").val();
-          
-//           //adds the new shoe type
-//           var newButton = $("<button/>").addClass( "btn btn-info shoe").attr("data-name",shoeButton).html(shoeButton);
-          
-//           $("#shoesbuttons").append(newButton);
-//               console.log("Work");
-  
-//           queryURL = "https://api.giphy.com/v1/gifs/search?q=" + shoeButton +"api_key=BsVC2oqJgs4P02YFYAmIWMZIDukzNH93&q=shoes&limit=10&offset=0&rating=G&lang=en";
-  
-        
-  
-//               console.log(shoeButton);
-  
-//           $.ajax({
-//           url: queryURL,
-//           dataType: "jsonp",
-//           method: "GET",
-//                 })
-  
-//           .then(function(response) {
-  
-//           var results = response.data;
-  
-//               for (var i = 0; i < results.length; i++) {
-  
-//                   var shoeDiv = $("<div/>");
-  
-//                   var p =$("<p/>");
-  
-//                   p.text(results[i].rating);
-  
-//                   var shoeImage = $("<img/>");
-  
-//                   shoeImage.addClass("anImg")
-  
-//                   shoeImage.attr("src", results[i].images.fixed_height_still.url);
-  
-//                   shoeImage.attr("data-still", results[i].images.fixed_height_still.url)
-  
-//                   shoeImage.attr("data-animate", results[i].images.fixed_height.url)
-  
-//                   .attr("data-state", "still");
-  
-//                   shoeDiv.append(p);
-  
-//                   shoeDiv.append(shoeImage);
-  
-//                   shoeDiv.prependTo($("#gifs"));
-//               }
-  
-//               $(".anImg").on("click", function() {
-          
-//                   var state = $(this).attr("data-state"); 
-//                   console.log(this);
-  
-//                   if (state == "still") {
-                  
-//                   $(this).attr("src", $(this).data("animate"));
-                  
-//                   $(this).attr("data-state", "animate");
-  
-//                   } else {
-                          
-//                   $(this).attr("src", $(this).data("still"));
-                  
-//                   $(this).attr("data-state", "still");
-//                   }      
-//               });
-//           });
-  
-//           $("#gif-input").val("");
-//           return false;
-//       })
-  
-//   });
-  
-  
+	// my array
+	var topic = ["Jimmy Choo", "Christian Louboutin", "Nike", "Adidas", "boat-shoes", "Jordan's", "designer shoes","tennis shoes"];
+	
+	//function that displays the gif buttons
+	
+	function displayGifButtons() {
+		$("#gifButtonsView").empty();
+		for (var i = 0; i < topic.length; i++) {
+			var gifButton = $("<button>");
+			gifButton.addClass("shoe");
+			gifButton.addClass("btn btn-primary")
+			gifButton.attr("data-name", topic[i]);
+			gifButton.text(topic[i]);
+			$("#gifButtonsView").append(gifButton);
+		}
+	}
+	
+	//function to add new button
+	
+	function addNewButton() {
+		$("#addGif").on("click", function() {
+			var shoe = $("#topicInput").val().trim();
+			if (shoe == ""){
+				return false;//no blank buttons
+			}
+			topic.push(shoe);
+	
+			displayGifButtons();
+			return false;
+			});
+	}
+	
+	//function to remove last button
+	function removeLastButton() {
+		$("removeGif").on("click", function() {
+			topic.pop(shoe);
+			displayGifButtons();
+			return false;
+		});
+	
+	}
+	
+	// function that displays the gifs
+	
+	function displayGifs() {
+		var shoe = $(this).attr("data-name");
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + shoe + "&api_key=BsVC2oqJgs4P02YFYAmIWMZIDukzNH93&limit=10";
+		
+		$.ajax({
+			url: queryURL,
+			method: 'GET'
+		})
+	
+		.done(function(response) {
+			$("#gifsView").empty();
+			//show results of gifs
+			var results = response.data;
+			if (results == ""){
+				alert("There is not a giffy for this!");	
+			}
+			for (var i = 0; i<results.length; i++){
+				//put gifs in a div
+				var gifDiv = $("<div1>");
+				//pull rating of gif
+				var gifRating = $("<p>").text("Rating " + results[i].rating);
+				gifDiv.append(gifRating);
+	
+				//pull gif
+				var gifImage = $("<img>");
+				gifImage.attr("src", results[i].images.fixed_height_small_still.url);
+				//paused images
+				gifImage.attr("data-still", results[i].images.fixed_height_small_still.url);
+				//animated images
+				gifImage.attr("data-animate", results[i].images.fixed_height_small.url);
+				//how images come in, already paused
+				gifImage.attr("data-state", "still");
+				gifImage.addClass("image");
+				gifDiv.append(gifImage);
+				//add new div to existing divs
+				$("#gifsView").prepend(gifDiv);
+			}
+		});
+	}
+	
+	
+	//list of already created ladies
+	displayGifButtons();
+	addNewButton();
+	removeLastButton();
+	
+	
+	
+	//event listeners
+	$(document).on("click", ".shoe", displayGifs);
+	$(document).on("click", ".image", function() {
+		var state = $(this).attr('data-state');
+		if (state == 'still') {
+			$(this).attr('src', $(this).data('animate'));
+			$(this).attr('data-state', 'animate');
+		}else {
+			$(this).attr('src', $(this).data('still'));
+			$(this).attr('data-state', 'still');
+		}
+	
+		});
+	
+	});
