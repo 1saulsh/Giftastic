@@ -1,7 +1,10 @@
 body {
     background: url('../images/shoes.jpg');
 }
+.container {
+    background-color: blueviolet;
 
+}
 h1 {
     font-family: cursive;
     text-align: center;
@@ -10,7 +13,10 @@ img {
     max-height: 150px;
 }
 
-
+h3 {
+    font-style: oblique;
+    font:bold;
+}
 form {
     padding: 10px;
 }
